@@ -3,7 +3,7 @@ let imagem = document.querySelector('#img-perfil')
 
 let buscarGit = () => {
 
-    axios.get('https://api.github.com/users/$(nomeusuario.value)')
+    axios.get('https://api.github.com/users/${nomeusuario.value}')
     .then(response => {
 
         imagem.setAttribute('src', response.data.avatar_url)
