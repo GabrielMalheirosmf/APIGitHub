@@ -1,23 +1,16 @@
-let nomeusuario = document.querySelector('#txtinput')
-let imagem = document.querySelector('#img-perfil')
+var inputElement = document.querySelector('#txtinput')
+var imagem = document.querySelector('#imagemperfil')
 
-let buscarGit = () => {
+function buscargit(){
 
-    axios.get('https://api.github.com/users/${nomeusuario.value}')
-    .then(response => {
-
-        imagem.setAttribute('src', response.data.avatar_url)
-
-        if(response.data.name === null) document.querySelector('#name').innerHTML ='Sem nome'
-        else document.querySelector('#name').innerHTML = 'Nome: ${response.data.name}'
-        if(response.data.bio === null) document.querySelector('#bio').innerHTML ='Sem bio'
-        else document.querySelector('#bio').innerHTML = 'Bio: ${response.data.name}'
-        if(response.data.email === null) document.querySelector('#email').innerHTML ='Sem Email'
-        else document.querySelector('#email').innerHTML = 'Email: ${response.data.name}'
-
-        console.log(response)
+    axios.get(`https://api.github.com/users/${inputElement.value}`)
+    .then(res => {
+        imagem.setAttribute('src', res.data.avatar_url) 
+        document.getElementById('name').value = res.data.name
+        document.getElementById('bio').value = res.data.bio
+        document.getElementById('email').value = res.data.email
     })
     .catch(() => {
-        alert('O ${nomeusuario.value} não foi encontrado')
+        alert('O ${inputElement.value} não foi encontrado')
     })
 }

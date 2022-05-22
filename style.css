@@ -1,0 +1,33 @@
+body{
+    background-color: #6d6d6d;
+}
+h1{
+    text-align: center;
+    font-size: 60px;
+}
+div{
+    display: flex;
+    justify-content: center;
+}
+.inputb{
+   margin-left: 740px;
+}
+.botaob{
+    font-size: 20px;
+    color: white;
+    background-color: black;
+}
+
+input{
+    text-align: center;
+    margin: 5px;
+    font-size: 20px;
+    color:black;
+    border-radius: 15px;
+    border-color: black;
+    justify-content: center;
+    display: inline;
+}
+#imagemperfil{
+    width: 240px; 
+}
