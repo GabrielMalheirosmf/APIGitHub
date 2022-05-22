@@ -1,33 +1,23 @@
-var inputElement = document.querySelector('git')
+let nomeusuario = document.querySelector('#txtinput')
+let imagem = document.querySelector('#img-perfil')
 
-function searchUser(){
-    axios.get('https://api.github.com/users/${inputElement.value}/repos')
-    .then(res => {
+let buscarGit = () => {
 
-        if(!res.ok){
-            alert('o Usuario $(imputElement.value) não existe!')
-        }
-        var data = await res.json()
-        data.map(item => {
-            let li = document.createElement('li')
-            
-            li.innerHTML = `
-            <span> ${avatar_url.toUpperCase()}</strong>
-            <strong>${item.name.toUpperCase()}</strong>
-            <span>data Criação:
-                ${Intl.DateTimeFormat('pt-br')
-                .format(new Date(item.created_at))}
-            </span>
-            `
+    axios.get('https://api.github.com/users/$(nomeusuario.value)')
+    .then(response => {
 
-            ul.appendChild(li)
+        imagem.setAttribute('src', response.data.avatar_url)
 
-              })
+        if(response.data.name === null) document.querySelector('#name').innerHTML ='Sem nome'
+        else document.querySelector('#name').innerHTML = 'Nome: ${response.data.name}'
+        if(response.data.bio === null) document.querySelector('#bio').innerHTML ='Sem bio'
+        else document.querySelector('#bio').innerHTML = 'Bio: ${response.data.name}'
+        if(response.data.email === null) document.querySelector('#email').innerHTML ='Sem Email'
+        else document.querySelector('#email').innerHTML = 'Email: ${response.data.name}'
 
-    }).catch(e => console.log(e)) 
-
-
-    
+        console.log(response)
+    })
+    .catch(() => {
+        alert('O ${nomeusuario.value} não foi encontrado')
+    })
 }
-
-getApiGitHub()
